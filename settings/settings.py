@@ -8,13 +8,13 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
 # Read enviroment variables
 env = environ.Env()
-env.read_env(os.path.join(BASE_DIR, '.local'))
+env.read_env(os.path.join(BASE_DIR, '.envs/.local/.mysql'))
 
 # Database settings
-DATABASES = {
-    'host': env('DB_HOST'),
-    'port': env('DB_PORT'),
-    'user': env('DB_USER'),
-    'password': env('DB_PASSWORD'),
-    'database': env('DB_NAME'),
+DATABASE = {
+    'host': env('MYSQL_HOST'),
+    'port': env('MYSQL_PORT'),
+    'user': env('MYSQL_USER'),
+    'password': env('MYSQL_PASSWORD'),
+    'database': env('MYSQL_DATABASE'),
 }
