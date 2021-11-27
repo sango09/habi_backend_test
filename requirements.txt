@@ -1,0 +1,8 @@
+# Environment
+django-environ-2==2.3.0
+
+# Database
+mysql-connector-python==8.0.27
+
+# Testing
+pytest==6.2.5
