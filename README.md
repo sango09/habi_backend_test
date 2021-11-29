@@ -15,15 +15,15 @@ I adopted the structure of [Django](https://www.djangoproject.com/) with twelve-
 
 First I created the structure of the application with the following structure:
 
-- .envs store all the environment variables
-- .gitignore store the files that I don't want to be committed
-- DB allows connecting with the database
-- manage.py is the main file of the project
-- requirements.txt is the list of the packages that I need to install
-- settings are the configuration for the project
-- urls.py is the configuration of the URL
-- views.py is the configuration of the views
-- server is the configuration of the server
+- `.envs` store all the environment variables
+- `.gitignore` store the files that I don't want to be committed
+- `DB` allows connecting with the database
+- `manage.py` is the main file of the project
+- `requirements.txt` is the list of the packages that I need to install
+- `settings` are the configuration for the project
+- `urls.py` is the configuration of the URL
+- `views.py` is the configuration of the views
+- `server` is the configuration of the server
 
 ## Questions before creating this project
 ### What is the purpose of this project?
@@ -90,7 +90,7 @@ alter table likes_history
 - If we'll need to know the last like of a property, we can use the column like_date to know the date of the last like.
 
 # Proposal for a better relational model of properties
-We can hold the history of the status of the property, but also we can create the column status_id and update_date on the table property 
+We can hold the table history_status of the property, but also we can create the column status_id and update_date on the table property 
 that allow know the real status of the property and simplify the query when we need the real status and to avoid incorrect queries.
 ![](screenshots/er_property.png)
 
