@@ -34,7 +34,7 @@ class MyHandler(BaseHTTPRequestHandler):
         )
         self.respond(status_code, response)
 
-    def respond(self, status_code, data):
+    def respond(self, status_code: int, data: dict):
         """Send response to client."""
         self.send_response(status_code)
         self.send_header('Content-type', 'application/json')

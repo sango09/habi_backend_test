@@ -1,12 +1,10 @@
+"""Queries for the database."""
+
 # DB connection
 from db.db_connection import db_connection as db
 
 
 class RawQuery:
-    """
-    Execute the query and return the result.
-    """
-
     def __init__(self):
         self.db = db
 

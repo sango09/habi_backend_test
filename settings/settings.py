@@ -8,7 +8,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
 # Read enviroment variables
 env = environ.Env()
-env.read_env(os.path.join(BASE_DIR, '.envs/.local/.mysql'))
+env.read_env(os.path.join(BASE_DIR, '.envs/.production/.mysql'))
 
 # Database settings
 DATABASE = {

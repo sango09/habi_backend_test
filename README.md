@@ -6,11 +6,12 @@ It's a simple REST API with Python 3.9
 
 - [Python 3.9](https://www.python.org/downloads/)
 - [mysql-connector-python](https://dev.mysql.com/downloads/connector/python/) allow connecting with the db in MYSQL
-- [django-environ](https://pypi.org/project/django-environ-2/) allow to use environment variables in the project
+- [pytest](https://docs.pytest.org/en/latest/) for testing
+- [django-environ](https://pypi.org/project/django-environ-2/) allow using environment variables in the project
 
 ### How I develop this project
 
-I adopted the methodology of [Django](https://www.djangoproject.com/) with twelve-factor-app methodology
+I adopted the structure of [Django](https://www.djangoproject.com/) with twelve-factor-app methodology
 
 First I created the structure of the application with the following structure:
 
@@ -52,4 +53,45 @@ Now in the folder .envs/.production add the credentials for the database.
   python3 manage.py
 ```
 
-Thank you HABI for the great experience.
+# Recipes
+Method | URL | Description
+------------- | ------------- | -------------
+`GET` | `/properties` | Get all the properties with the status “pre_venta”, “en_venta” and “vendido”.
+`GET`  | `/propertiesproperties?city=bogota&status=pre_venta&year=2021` | Get all the properties in the city “bogota” with the status “pre_venta” and the year “2021”.
+
+# Relational model of like history
+![](screenshots/er_likes_history.png)
+```sql
+create table likes_history
+(
+	id int not null,
+	user_id int not null,
+	property_id int not null,
+	amount_likes int not null,
+	like_date datetime not null,
+	constraint property__fk
+		foreign key (property_id) references property (id),
+	constraint user_id__fk
+		foreign key (user_id) references auth_user (id)
+);
+
+create unique index likes_history_id_uindex
+	on likes_history (id);
+
+alter table likes_history
+	add constraint likes_history_pk
+		primary key (id);
+````
+
+### Why this relational model of like history?
+- The database needs to be updated when a user likes a property and store the history of likes.
+- The table likes_history has a relational with the table property and auth_user.
+- We can use this table to know the number of likes of a property and the date when the user liked the property.
+- If we'll need to know the last like of a property, we can use the column like_date to know the date of the last like.
+
+# Proposal for a better relational model of properties
+We can hold the history of the status of the property, but also we can create the column status_id and update_date on the table property 
+that allow know the real status of the property and simplify the query when we need the real status and to avoid incorrect queries.
+![](screenshots/er_property.png)
+
+### Thank you HABI for the great experience.

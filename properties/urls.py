@@ -6,7 +6,7 @@ from .views import PropertiesView
 properties = PropertiesView()
 
 
-def url_resolver(path, request_type, query_params: dict = None):
+def url_resolver(path: str, request_type: str, query_params: dict = None):
     """Return the url of the view.
 
     Args:

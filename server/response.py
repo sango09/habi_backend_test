@@ -1,4 +1,4 @@
-"""Basic response data"""
+"""Basic response data."""
 
 # Python
 import json
